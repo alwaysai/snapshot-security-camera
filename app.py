@@ -35,8 +35,9 @@ def main():
             while True:
                 frame = video_stream.read()
                 results = obj_detect.detect_objects(frame, confidence_level=.5)
+                people = edgeiq.filter_predictions_by_label(results.predictions, ['person'])
                 frame = edgeiq.markup_image(
-                        frame, results.predictions, colors=obj_detect.colors)
+                        frame, people, colors=obj_detect.colors)
 
                 # Generate text to display on streamer
                 text = ["Model: {}".format(obj_detect.model_id)]
@@ -44,7 +45,7 @@ def main():
                         "Inference time: {:1.3f} s".format(results.duration))
                 text.append("Objects:")
 
-                for prediction in results.predictions:
+                for prediction in people:
                     text.append("{}: {:2.2f}%".format(
                         prediction.label, prediction.confidence * 100))
 

@@ -1,4 +1,5 @@
 alwaysai.target.json
 venv/
+models/
 tags
 __pycache__
