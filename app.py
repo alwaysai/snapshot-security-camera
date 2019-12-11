@@ -16,6 +16,7 @@ def main():
     obj_detect = edgeiq.ObjectDetection(
             "alwaysai/mobilenet_ssd")
     obj_detect.load(engine=edgeiq.Engine.DNN)
+    tracker = edgeiq.CentroidTracker(deregister_frames=30)
 
     print("Loaded model:\n{}\n".format(obj_detect.model_id))
     print("Engine: {}".format(obj_detect.engine))
@@ -36,6 +37,14 @@ def main():
                 frame = video_stream.read()
                 results = obj_detect.detect_objects(frame, confidence_level=.5)
                 people = edgeiq.filter_predictions_by_label(results.predictions, ['person'])
+                tracked_people = tracker.update(people)
+
+                people = []
+                for (object_id, prediction) in tracked_people.items():
+                    new_label = 'Person {}'.format(object_id)
+                    prediction.label = new_label
+                    people.append(prediction)
+
                 frame = edgeiq.markup_image(
                         frame, people, colors=obj_detect.colors)
 
