@@ -1,6 +1,6 @@
 import time
 import edgeiq
-import datetime
+import cv2
 """
 Use object detection to detect objects in the frame in realtime. The
 types of objects detected can be changed by selecting different models.
@@ -11,6 +11,13 @@ https://dashboard.alwaysai.co/docs/application_development/changing_the_model.ht
 To change the engine and accelerator, follow this guide:
 https://dashboard.alwaysai.co/docs/application_development/changing_the_engine_and_accelerator.html
 """
+
+
+def save_snapshot(image, person_id):
+    snap_date = time.strftime('%Y-%m-%d')
+    snap_time = time.strftime('%H:%M:%S')
+    filename = '{}-{}-person-{}.jpg'.format(snap_date, snap_time, person_id)
+    cv2.imwrite(filename, image)
 
 
 def main():
@@ -43,17 +50,6 @@ def main():
                 people = edgeiq.filter_predictions_by_label(results.predictions, ['person'])
                 tracked_people = tracker.update(people)
 
-                timestamp = str(datetime.datetime.now())
-                new_entries = set(tracked_people) - set(prev_tracked_people)
-                for entry in new_entries:
-                    logs.append('Person {} entered at {}'.format(entry, timestamp))
-
-                new_exits = set(prev_tracked_people) - set(tracked_people)
-                for exit in new_exits:
-                    logs.append('Person {} exited at {}'.format(exit, timestamp))
-
-                prev_tracked_people = dict(tracked_people)
-
                 people = []
                 for (object_id, prediction) in tracked_people.items():
                     new_label = 'Person {}'.format(object_id)
@@ -62,6 +58,17 @@ def main():
 
                 frame = edgeiq.markup_image(
                         frame, people, colors=obj_detect.colors)
+
+                new_entries = set(tracked_people) - set(prev_tracked_people)
+                for entry in new_entries:
+                    save_snapshot(frame, entry)
+                    logs.append('Person {} entered'.format(entry))
+
+                new_exits = set(prev_tracked_people) - set(tracked_people)
+                for exit in new_exits:
+                    logs.append('Person {} exited'.format(exit))
+
+                prev_tracked_people = dict(tracked_people)
 
                 # Generate text to display on streamer
                 text = ["Model: {}".format(obj_detect.model_id)]
