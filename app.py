@@ -1,5 +1,6 @@
 import time
 import edgeiq
+import datetime
 """
 Use object detection to detect objects in the frame in realtime. The
 types of objects detected can be changed by selecting different models.
@@ -32,12 +33,26 @@ def main():
             time.sleep(2.0)
             fps.start()
 
+            prev_tracked_people = {}
+            logs = []
+
             # loop detection
             while True:
                 frame = video_stream.read()
                 results = obj_detect.detect_objects(frame, confidence_level=.5)
                 people = edgeiq.filter_predictions_by_label(results.predictions, ['person'])
                 tracked_people = tracker.update(people)
+
+                timestamp = str(datetime.datetime.now())
+                new_entries = set(tracked_people) - set(prev_tracked_people)
+                for entry in new_entries:
+                    logs.append('Person {} entered at {}'.format(entry, timestamp))
+
+                new_exits = set(prev_tracked_people) - set(tracked_people)
+                for exit in new_exits:
+                    logs.append('Person {} exited at {}'.format(exit, timestamp))
+
+                prev_tracked_people = dict(tracked_people)
 
                 people = []
                 for (object_id, prediction) in tracked_people.items():
@@ -57,6 +72,9 @@ def main():
                 for prediction in people:
                     text.append("{}: {:2.2f}%".format(
                         prediction.label, prediction.confidence * 100))
+
+                text.append('Logs:')
+                text += logs
 
                 streamer.send_data(frame, text)
 
