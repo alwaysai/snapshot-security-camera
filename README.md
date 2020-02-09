@@ -10,12 +10,15 @@ Once accepted to the program, follow the setup instructions located on the [Docs
 Once the alwaysAI toolset is installed on your development machine (or edge device if developing directly on it) you can run the following CLI commands:
 
 To set up the target device & folder path
+
 `aai app configure`
 
 To build and deploy the docker image of the app to the target device
+
 `aai app deploy`
 
 To start the app
+
 `aai app start`
 
 Images will be saved in the app directory with the person's detection index and the timestamp.
