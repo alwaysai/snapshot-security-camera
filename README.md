@@ -2,23 +2,44 @@
 This app expands on the *realtime_object_detector* starter app to build a simple security camera app that takes a picture of each new person who enters the frame. The full tutorial can be found on the [alwaysAI blog](https://learn.alwaysai.co/detect-people-using-alwaysai).
 
 ## Setup
-This app requires access to alwaysAI's Beta program. To sign up go to the [Sign up page](https://www.alwaysai.co/dashboard)
+This app requires an alwaysAI account. To sign up go to the [Sign up page](https://www.alwaysai.co/dashboard). Follow the instructions to install the alwaysAI toolchain on your development machine.
 
-Once accepted to the program, follow the setup instructions located on the [Docs page](https://www.alwaysai.co/docs/getting_started/introduction.html) - Note this link is accessible only to beta users.
+Next, Create an empty project to be used with this app. When you clone this repo, you can run `aai app configure` within the repo directory and your new project will appear in the list.
 
 ## Usage
-Once the alwaysAI toolset is installed on your development machine (or edge device if developing directly on it) you can run the following CLI commands:
+Once you have the alwaysAI tools installed and the new project created, run the following CLI commands at the top level of the repo:
 
-To set up the target device & folder path
+To set the project, and select the target device run:
 
-`aai app configure`
+```
+aai app configure
+```
 
-To build and deploy the docker image of the app to the target device
+To build your app and deploy to the target device:
 
-`aai app deploy`
+```
+aai app deploy
+```
 
-To start the app
+To start the app:
 
-`aai app start`
+```
+aai app start
+```
 
-Images will be saved in the app directory with the person's detection index and the timestamp.
+Images will be saved in the app directory with a person detection index and the timestamp. The timezone is set in the `Dockerfile` and may need to be changed based on your location.
+
+Once started, a link will appear for the Streamer which displays the camera feed and detections in your browser:
+
+```
+Loaded model:
+alwaysai/mobilenet_ssd
+
+Engine: Engine.DNN
+Accelerator: Accelerator.GPU
+
+Labels:
+['background', 'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor']
+
+[INFO] Streamer started at http://localhost:5000
+```
