@@ -14,8 +14,8 @@ https://dashboard.alwaysai.co/docs/application_development/changing_the_engine_a
 
 
 def save_snapshot(image, person_id):
-    snap_date = time.strftime('%Y-%m-%d')
-    snap_time = time.strftime('%H:%M:%S')
+    snap_date = time.strftime('%Y.%m.%d')
+    snap_time = time.strftime('%H.%M.%S')
     filename = '{}-{}-person-{}.jpg'.format(snap_date, snap_time, person_id)
     cv2.imwrite(filename, image)
 
