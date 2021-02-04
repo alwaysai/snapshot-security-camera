@@ -15,10 +15,10 @@ To set the project, and select the target device run:
 aai app configure
 ```
 
-To build your app and deploy to the target device:
+To install the app on the target device:
 
 ```
-aai app deploy
+aai app install
 ```
 
 To start the app:
