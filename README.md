@@ -13,6 +13,7 @@ yet. Follow the instructions to install the alwaysAI toolchain on your
 development machine.
 
 ## Usage
+
 Once you have the alwaysAI tools installed, run the following CLI commands at
 the top level of the repo:
 
@@ -41,3 +42,10 @@ Labels:
 
 [INFO] Streamer started at http://localhost:5000
 ```
+
+## Support
+
+* [Docs](https://alwaysai.co/docs)
+* [RealSense API](https://alwaysai.co/docs/edgeiq_api/real_sense.html)
+* [Community Discord](https://discord.gg/R2uM36U)
+* [Email](contact@alwaysai.co)
