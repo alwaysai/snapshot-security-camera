@@ -46,6 +46,6 @@ Labels:
 ## Support
 
 * [Docs](https://alwaysai.co/docs)
-* [RealSense API](https://alwaysai.co/docs/edgeiq_api/real_sense.html)
+* [edgeIQ API](https://alwaysai.co/docs/edgeiq_api/index.html)
 * [Community Discord](https://discord.gg/R2uM36U)
 * [Email](contact@alwaysai.co)
