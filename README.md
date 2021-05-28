@@ -5,21 +5,25 @@ simple security camera app that takes a picture of each new person who enters
 the frame. The full tutorial can be found on the
 [alwaysAI blog](https://alwaysai.co/blog/detect-people-using-alwaysai).
 
-## Setup
-
-This app requires an alwaysAI account. Head to the
-[Sign up page](https://www.alwaysai.co/dashboard) if you don't have an account
-yet. Follow the instructions to install the alwaysAI toolchain on your
-development machine.
+## Requirements
+* [alwaysAI account](https://alwaysai.co/auth?register=true)
+* [alwaysAI Development Tools](https://alwaysai.co/docs/get_started/development_computer_setup.html)
 
 ## Usage
+Once the alwaysAI tools are installed on your development machine (or edge device if developing directly on it) you can install and run the app with the following CLI commands:
 
-Once you have the alwaysAI tools installed, run the following CLI commands at
-the top level of the repo:
-
+To perform initial configuration of the app:
 ```
 aai app configure
+```
+
+To prepare the runtime environment and install app dependencies:
+```
 aai app install
+```
+
+To start the app:
+```
 aai app start
 ```
 
@@ -44,8 +48,6 @@ Labels:
 ```
 
 ## Support
-
-* [Docs](https://alwaysai.co/docs)
-* [edgeIQ API](https://alwaysai.co/docs/edgeiq_api/index.html)
-* [Community Discord](https://discord.gg/R2uM36U)
-* [Email](contact@alwaysai.co)
+* [Documentation](https://alwaysai.co/docs/)
+* [Community Discord](https://discord.gg/z3t9pea)
+* Email: support@alwaysai.co
