@@ -27,15 +27,15 @@ def main():
     tracker = edgeiq.CentroidTracker(
             deregister_frames=30, enter_cb=person_enters, exit_cb=person_exits)
 
-    print("Loaded model:\n{}\n".format(obj_detect.model_id))
     print("Engine: {}".format(obj_detect.engine))
     print("Accelerator: {}\n".format(obj_detect.accelerator))
+    print("Model:\n{}\n".format(obj_detect.model_id))
     print("Labels:\n{}\n".format(obj_detect.labels))
 
     fps = edgeiq.FPS()
 
     try:
-        with edgeiq.WebcamVideoStream(cam=2) as video_stream, \
+        with edgeiq.WebcamVideoStream(cam=0) as video_stream, \
                 edgeiq.Streamer() as streamer:
             # Allow Webcam to warm up
             time.sleep(2.0)
