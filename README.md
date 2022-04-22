@@ -49,5 +49,6 @@ Labels:
 
 ## Support
 * [Documentation](https://alwaysai.co/docs/)
-* [Community Discord](https://discord.gg/z3t9pea)
+* [Community Discord](https://discord.gg/alwaysai)
 * Email: support@alwaysai.co
+
