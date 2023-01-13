@@ -3,7 +3,7 @@
 This app expands on the *realtime_object_detector* starter app to build a
 simple security camera app that takes a picture of each new person who enters
 the frame. The full tutorial can be found on the
-[alwaysAI blog](https://alwaysai.co/blog/detect-people-using-alwaysai).
+[alwaysAI blog](https://alwaysai.co/resources/tutorials/detect-people-using-object-detection).
 
 ## Requirements
 * [alwaysAI account](https://alwaysai.co/auth?register=true)
@@ -49,6 +49,5 @@ Labels:
 
 ## Support
 * [Documentation](https://alwaysai.co/docs/)
-* [Community Discord](https://discord.gg/alwaysai)
+* [Community Discord](https://discord.gg/z3t9pea)
 * Email: support@alwaysai.co
-
